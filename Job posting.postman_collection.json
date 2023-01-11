@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "3f17e5ee-5e29-4260-bc41-7ce86cb5efc7",
+		"name": "Job posting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Job post",
+			"item": [
+				{
+					"name": "Create-job-posting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\" : \"J103\",\r\n    \"title\" : \"Nodejs developer\",\r\n    \"description\" : \"We need Nodejs developer\",\r\n    \"requiredSkills\" : [\r\n        \"Python\",\r\n        \"Nodejs\",\r\n        \"Linux\",\r\n        \"Javascript\"\r\n    ],\r\n    \"experienceLevel\" : \"B.Tech\",\r\n    \"email\" : \"name1@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/job-post/new",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"job-post",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View all job postings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/user/job-post?searchTerm=devOps",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"job-post"
+							],
+							"query": [
+								{
+									"key": "requiredSkills",
+									"value": "DevOps",
+									"disabled": true
+								},
+								{
+									"key": "experienceLevel",
+									"value": "M.tech",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "devOps"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get job by job id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/user/job-post/:jobId",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"job-post",
+								":jobId"
+							],
+							"variable": [
+								{
+									"key": "jobId",
+									"value": "J101"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a job posting",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isDeleted\" : true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/job-post/:jobId",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"job-post",
+								":jobId"
+							],
+							"variable": [
+								{
+									"key": "jobId",
+									"value": "J104"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApplyForJob",
+			"item": [
+				{
+					"name": "ApplyForJob",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobId\" : \"J101\",\r\n    \"name\" : \"name2\",\r\n    \"email\" : \"name2@email.com\",\r\n    \"resume\" : \"1234.resume.file\",\r\n    \"coverLetter\" : \"1234.coverLetter.file\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/apply-job",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"apply-job"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View all applicants for the job",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/user/:jobCreator/:jobId/view-all-job-applicants",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								":jobCreator",
+								":jobId",
+								"view-all-job-applicants"
+							],
+							"variable": [
+								{
+									"key": "jobCreator",
+									"value": "name2@email.com"
+								},
+								{
+									"key": "jobId",
+									"value": "J101"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"name2\",\r\n    \"email\" : \"name2@email.com\",\r\n    \"resume\" : \"1235.resume.file\",\r\n    \"coverLetter\" : \"1235.coverLetter.file\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/register",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"name2@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}/user/login",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/user/user",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/user/user/:id",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"user",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "63bbdc64efb09b363af71e1e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sample request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/user/job-post/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"job-post",
+						"new"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
